@@ -28,6 +28,11 @@ print("Welcome back to the UW Calculator")
 //: IMPORTANT: If any tests are commented out, you will be graded a zero (0)! You should never be in the habit of eliminating tests to make the code pass.
 //:
 class Calculator {
+    
+    func add(lhs: Int, rhs: Int) -> Int {
+        print("Testing")
+        return lhs + rhs
+    }
 }
 
 //: Don't change the name of this object (`calc`); it's used in all the tests.
