@@ -30,11 +30,117 @@ print("Welcome back to the UW Calculator")
 class Calculator {
     
     func add(lhs: Int, rhs: Int) -> Int {
-        print("Testing")
         return lhs + rhs
     }
-}
+    func subtract(lhs: Int, rhs: Int) -> Int {
+        return lhs - rhs
+    }
+    func multiply(lhs: Int, rhs: Int) -> Int {
+        return lhs * rhs
+    }
+    func divide(lhs: Int, rhs: Int) -> Int {
+        return lhs / rhs
+    }
+    func mathOp(lhs: Int, rhs: Int, op: (Int, Int) -> Int) -> Int {
+        return op(lhs, rhs)
+    }
+    
+    //functions for arrays
+    
+    func add(_ arg: [Int]) -> Int {
+        var ans = 0
+        for num in arg {
+            ans += num
+        }
+        return ans
+        
+    }
+    
+    func multiply(_ arg: [Int]) -> Int {
+        var ans = 1
+        for num in arg {
+            ans *= num
+        }
+        return ans
+    }
+    
+    func count(_ arg: [Int]) -> Int {
+        return arg.count
+    }
+    
+    func avg(_ arg: [Int]) -> Int {
+        var ans = 0
+        for num in arg {
+            ans += num
+        }
+        return ans / arg.count
+    }
+    
+    func mathOp(args: [Int], beg: Int, op: (Int, Int) -> Int) -> Int {
+        var ans = beg
+        for num in args {
+            ans = op(ans, num)
+        }
+        print(ans)
+        return ans
+    }
+    
+    //tuples function
+    
+    func add(lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int ) {
+        return (lhs.0 + rhs.0, lhs.1 + rhs.1)
+    }
+    
+    func subtract(lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int) {
+        return (lhs.0 - rhs.0, lhs.1 - rhs.1)
+    }
+    
+    func add(lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
+        var x = 0
+        var y = 0
+        for (key, value) in lhs {
+            if key == "x" {
+                x += value
+            } else {
+                y += value
+            }
+        }
+        for (key, value) in rhs {
+            if key == "x" {
+                x += value
+            } else {
+                y += value
+            }
+        }
+        var dict = ["x": x, "y": y]
+        print(dict)
+        return dict
+    }
+    
+    func subtract(lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
+        var x1 = 0
+        var x2 = 0
+        var y1 = 0
+        var y2 = 0
+        for (key, value) in lhs {
+            if key == "x" {
+                x1 += value
+            } else {
+                y1 += value
+            }
+        }
+        for (key, value) in rhs {
+            if key == "x" {
+                x2 += value
+            } else {
+                y2 += value
+            }
+        }
+        
+        return ["x" : x1 - x2, "y": y1 - y2]
+    }
 
+}
 //: Don't change the name of this object (`calc`); it's used in all the tests.
 let calc = Calculator()
 
@@ -49,6 +155,7 @@ let calc = Calculator()
 
 // ===== Your tests go here
 
+
 //: ---
 //: ## Test code block
 //: Do not modify the code in this section
@@ -57,7 +164,7 @@ calc.subtract(lhs: 2, rhs: 2) == 0
 calc.multiply(lhs: 2, rhs: 2) == 4
 calc.divide(lhs: 2, rhs: 2) == 1
 
-calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rjs) + (lhs * rhs) }) == 35
+calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rhs) + (lhs * rhs) }) == 35
     // This style is one way of writing an anonymous function
 calc.mathOp(lhs: 10, rhs: -5, op: { ($0 + $1) + ($0 - $1) }) == 20
     // This is the second, more terse, style; either works
