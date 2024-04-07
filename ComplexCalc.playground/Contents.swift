@@ -57,6 +57,9 @@ class Calculator {
     }
     
     func multiply(_ arg: [Int]) -> Int {
+        if arg.count == 0 {
+            return 0
+        }
         var ans = 1
         for num in arg {
             ans *= num
@@ -69,6 +72,9 @@ class Calculator {
     }
     
     func avg(_ arg: [Int]) -> Int {
+        if arg.count == 0 {
+            return 0
+        }
         var ans = 0
         for num in arg {
             ans += num
@@ -155,7 +161,17 @@ let calc = Calculator()
 
 // ===== Your tests go here
 
-
+/*
+ There should be a test for an empty array when calculating average.
+ In my implementation, I return the average by dividing the sum of all elements within the array
+ by the number of elements. If there are no elements within the element, then my method will divide 0 by the size of the array
+ which is 0. In this case, you cannot divid any number by 0. For the limited testing knowledge, we will use 0 as an indicator that
+ if an empty array is passed, 0 represents that you cannot divide by 0.
+ 
+ The same applies with multipling if an array is empty. Since my starting accumulator is 1 in order to properly multiply, 1 will be returned which is not the correct answers when multiplying an empty array. Instead, we should be expecting 0 as we tested calc.avg() to indicate that there is no answer for multiply non existing numbers.
+ */
+calc.avg([]) == 0
+calc.multiply([]) == 0
 //: ---
 //: ## Test code block
 //: Do not modify the code in this section
